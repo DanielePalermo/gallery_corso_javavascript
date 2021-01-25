@@ -1,0 +1,113 @@
+<html>
+<head>
+<style>
+ /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+</style>
+
+<script>
+
+var attuale = 0; 
+var immagini = ["./img/1.jpeg","./img/2.jpeg","./img/3.jpeg","./img/4.jpeg","./img/5.jpeg","./img/6.jpeg","./img/7.jpeg","./img/8.jpeg","./img/9.jpeg","./img/10.jpeg"];
+
+function mostra(event)
+{
+    attuale = event.target.id;
+    document.getElementById("target").src = event.target.src;
+}
+
+function precedente()
+{
+    attuale--;
+    if(attuale < 0) attuale = 10;
+    document.getElementById("target").src = immagine[attuale];
+}
+
+function successiva()
+{
+    attuale++;
+    if(attuale > 10) attuale = 0;
+    document.getElementById("target").src = immagine[attuale];
+}
+
+function zoom()
+{
+    document.getElementById('zoom').src = immagine[attuale];
+    document.getElementById('myModal').style.display="block" ;
+}
+
+function chiudi()
+{
+    document.getElementById('myModal').style.display="none" ;
+}
+
+</script>
+</head>
+<body>
+<div>
+<img id="target" height="300" src="./img/1.jpeg" onclick="zoom()">
+</div>
+<button onclick="precedente()"><-</button>&nbsp;<button onclick="successiva()">-></button>&nbsp;
+<br/>
+<div id="menu">
+</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+       <span class="close" onclick="chiudi();" >&times;</span>
+	<img id="zoom">
+  </div>
+
+</div>
+</body>
+<script>
+html="";
+for(i=1;i<=10;i++)
+{
+//    html+="<img ionclick='mostra(this);return false;' height=40 src='./img/"+i+".jpeg'></a>";
+    var img = document.createElement("img");
+    img.id = i;
+    img.height = 40;
+    img.src = immagine[i];
+    img.addEventListener("click",mostra);
+    document.getElementById('menu').append(img);
+}
+//document.getElementById('menu').innerHTML = html;
+</script>
+</html>
