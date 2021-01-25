@@ -101,10 +101,10 @@ function chiudi()
 </div>
 </body>
 <script>
-html="";
+
 for(i=0;i<=9;i++)
 {
-//    html+="<img ionclick='mostra(this);return false;' height=40 src='./img/"+i+".jpeg'></a>";
+
     var img = document.createElement("img");
     img.id = i;
     img.height = 40;
@@ -112,6 +112,6 @@ for(i=0;i<=9;i++)
     $(img).on("click",mostra);
     $('#menu').append(img);
 }
-//document.getElementById('menu').innerHTML = html;
+
 </script>
 </html>
